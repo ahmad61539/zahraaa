@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Materi Genre - Zahra's Learning Hub</title>
+    <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+    <!-- Header -->
+    <div class="header">
+        <div class="header-content">
+            <div class="logo">📚 Zahra's Learning Hub</div>
+            <a href="javascript:history.back()" class="back-btn">
+                <span>←</span> Kembali
+            </a>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="container">
+        <h1 class="page-title">Materi Genre</h1>
+        <p class="page-subtitle">Pelajari berbagai jenis genre dalam sastra dan media</p>
+
+        <!-- Genre Cards Grid -->
+        <div class="genre-grid">
+            <div class="genre-card" onclick="openGenreModal('fiksi')">
+                <span class="genre-icon">📖</span>
+                <h3 class="genre-title">Fiksi</h3>
+                <p class="genre-description">
+                    Karya sastra yang berisi cerita rekaan atau khayalan pengarang, bukan kejadian nyata.
+                </p>
+                <div class="genre-examples">
+                    <strong>Contoh:</strong>
+                    Novel, cerpen, dongeng, fabel
+                </div>
+            </div>
+
+            <div class="genre-card" onclick="openGenreModal('nonfiksi')">
+                <span class="genre-icon">📰</span>
+                <h3 class="genre-title">Non-Fiksi</h3>
+                <p class="genre-description">
+                    Karya tulis yang berdasarkan fakta, data, dan kejadian nyata yang dapat diverifikasi.
+                </p>
+                <div class="genre-examples">
+                    <strong>Contoh:</strong>
+                    Biografi, esai, artikel, laporan
+                </div>
+            </div>
+
+            <div class="genre-card" onclick="openGenreModal('puisi')">
+                <span class="genre-icon">🎭</span>
+                <h3 class="genre-title">Puisi</h3>
+                <p class="genre-description">
+                    Karya sastra yang menggunakan bahasa yang padat, berima, dan penuh makna simbolik.
+                </p>
+                <div class="genre-examples">
+                    <strong>Contoh:</strong>
+                    Sonnet, balada, pantun, syair
+                </div>
+            </div>
+
+            <div class="genre-card" onclick="openGenreModal('drama')">
+                <span class="genre-icon">🎪</span>
+                <h3 class="genre-title">Drama</h3>
+                <p class="genre-description">
+                    Karya sastra yang ditulis dalam bentuk dialog dan dimaksudkan untuk dipentaskan.
+                </p>
+                <div class="genre-examples">
+                    <strong>Contoh:</strong>
+                    Tragedi, komedi, drama musikal
+                </div>
+            </div>
+
+            <div class="genre-card" onclick="openGenreModal('fantasi')">
+                <span class="genre-icon">🧙‍♂️</span>
+                <h3 class="genre-title">Fantasi</h3>
+                <p class="genre-description">
+                    Genre yang menampilkan elemen supernatural atau magis yang tidak ada di dunia nyata.
+                </p>
+                <div class="genre-examples">
+                    <strong>Contoh:</strong>
+                    Harry Potter, Lord of the Rings
+                </div>
+            </div>
+
+            <div class="genre-card" onclick="openGenreModal('misteri')">
+                <span class="genre-icon">🔍</span>
+                <h3 class="genre-title">Misteri</h3>
+                <p class="genre-description">
+                    Genre yang berfokus pada pemecahan teka-teki, kejahatan, atau peristiwa yang tidak dapat dijelaskan.
+                </p>
+                <div class="genre-examples">
+                    <strong>Contoh:</strong>
+                    Detective stories, thriller, suspense
+                </div>
+            </div>
+        </div>
+
+        <!-- Interactive Quiz Section -->
+        <div class="quiz-section">
+            <h2 class="quiz-title">🧠 Uji Pemahaman Anda!</h2>
+            <p style="margin-bottom: 30px; color: #666;">Seberapa baik pemahaman Anda tentang genre-genre ini?</p>
+            <button class="quiz-btn" onclick="startQuiz()">
+                🚀 Mulai Kuis
+            </button>
+            <button class="quiz-btn" onclick="showRandomFact()">
+                💡 Fakta Menarik
+            </button>
+        </div>
+    </div>
+
+    <!-- Modal for detailed genre info -->
+    <div id="genreModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <div id="modalContent">
+                <!-- Content will be populated by JavaScript -->
+            </div>
+        </div>
+    </div>
+
+    <script src="./app.js"></script>
+</body>
+</html>

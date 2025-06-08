@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zahra's Learning Hub</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="floating-shapes">
+        <div class="shape"></div>
+        <div class="shape"></div>
+        <div class="shape"></div>
+    </div>
+
+    <div class="container">
+        <div class="header">
+            <h1 class="title">Zahra's Learning Hub</h1>
+            <p class="subtitle">Explore, Learn, Grow</p>
+        </div>
+
+        <div class="buttons-container">
+            <button class="btn" onclick="openModal('materiModal')">
+                <span class="icon">📚</span>
+                Materi Genre
+            </button>
+            
+            <button class="btn" onclick="openModal('chatModal')">
+                <span class="icon">💬</span>
+                Talk with Zahra
+            </button>
+        </div>
+    </div>
+
+    <div id="materiModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('materiModal')">&times;</span>
+            <h2 style="color: #667eea; margin-bottom: 20px;">📚 Materi Genre</h2>
+            <p style="color: #666; line-height: 1.6;">
+                Selamat datang di bagian Materi Genre! Di sini Anda dapat mempelajari berbagai jenis genre dalam sastra, film, dan media lainnya. 
+                Mulai dari fiksi, non-fiksi, drama, komedi, horror, dan masih banyak lagi.
+            </p>
+            <button class="btn" style="margin-top: 20px; width: auto;" onclick="openMateri()">
+                <span class="icon">✨</span>
+                Mulai Belajar
+            </button>
+        </div>
+    </div>
+
+    <div id="chatModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('chatModal')">&times;</span>
+            <h2 style="color: #48cae4; margin-bottom: 20px;">💬 Talk with Zahra</h2>
+            <p style="color: #666; line-height: 1.6;">
+                Halo! Saya Zahra, asisten pembelajaran Anda. Saya siap membantu menjawab pertanyaan, 
+                memberikan penjelasan materi, dan mendampingi perjalanan belajar Anda. 
+                Jangan ragu untuk bertanya apa saja!
+            </p>
+            <button class="btn" style="margin-top: 20px; width: auto;" onclick="openInstagram()">
+                <span class="icon">🚀</span>
+                Mulai Chat
+            </button>
+        </div>
+    </div>
+    <script src="app.js"></script>
+</body>
+</html>
