@@ -4,7 +4,329 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Materi Genre - Zahra's Learning Hub</title>
-    <link rel="stylesheet" href="./style.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            color: #333;
+        }
+
+        /* Header */
+        .header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 20px 0;
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .back-btn {
+            background: linear-gradient(135deg, #ff6b6b, #feca57);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 25px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .back-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Main Content */
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        .page-title {
+            text-align: center;
+            font-size: 3rem;
+            font-weight: 700;
+            color: white;
+            margin-bottom: 20px;
+            text-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        .page-subtitle {
+            text-align: center;
+            font-size: 1.2rem;
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 50px;
+            animation: fadeInUp 0.8s ease-out 0.2s both;
+        }
+
+        /* Genre Cards */
+        .genre-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 50px;
+        }
+
+        .genre-card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            animation: slideInUp 0.8s ease-out;
+        }
+
+        .genre-card:nth-child(2) { animation-delay: 0.1s; }
+        .genre-card:nth-child(3) { animation-delay: 0.2s; }
+        .genre-card:nth-child(4) { animation-delay: 0.3s; }
+        .genre-card:nth-child(5) { animation-delay: 0.4s; }
+        .genre-card:nth-child(6) { animation-delay: 0.5s; }
+
+        .genre-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .genre-card:hover::before {
+            left: 100%;
+        }
+
+        .genre-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.2);
+        }
+
+        .genre-icon {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            display: block;
+        }
+
+        .genre-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            color: #333;
+        }
+
+        .genre-description {
+            color: #666;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .genre-examples {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 10px;
+            border-left: 4px solid #667eea;
+        }
+
+        .genre-examples strong {
+            color: #667eea;
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        /* Interactive Quiz Section */
+        .quiz-section {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 40px;
+            margin-top: 50px;
+            text-align: center;
+            animation: fadeInUp 1s ease-out 0.6s both;
+        }
+
+        .quiz-title {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        .quiz-btn {
+            background: linear-gradient(135deg, #48cae4, #0077b6);
+            color: white;
+            border: none;
+            padding: 18px 35px;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin: 10px;
+        }
+
+        .quiz-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideInUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .page-title {
+                font-size: 2.5rem;
+            }
+
+            .page-subtitle {
+                font-size: 1rem;
+            }
+
+            .genre-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .genre-card {
+                padding: 25px;
+            }
+
+            .quiz-section {
+                padding: 30px 20px;
+            }
+
+            .container {
+                padding: 30px 15px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .header-content {
+                padding: 0 15px;
+            }
+
+            .logo {
+                font-size: 1.2rem;
+            }
+
+            .back-btn {
+                padding: 10px 18px;
+                font-size: 0.8rem;
+            }
+
+            .page-title {
+                font-size: 2rem;
+            }
+        }
+
+        /* Modal for detailed genre info */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(5px);
+        }
+
+        .modal-content {
+            background-color: white;
+            margin: 5% auto;
+            padding: 40px;
+            border-radius: 20px;
+            width: 90%;
+            max-width: 600px;
+            max-height: 80vh;
+            overflow-y: auto;
+            animation: modalSlideIn 0.3s ease-out;
+        }
+
+        @keyframes modalSlideIn {
+            from {
+                opacity: 0;
+                transform: translateY(-50px) scale(0.8);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+            line-height: 1;
+        }
+
+        .close:hover {
+            color: #000;
+        }
+    </style>
 </head>
 <body>
     <!-- Header -->
@@ -24,28 +346,28 @@
 
         <!-- Genre Cards Grid -->
         <div class="genre-grid">
-            <div class="genre-card" onclick="openGenreModal('fiksi')">
-                <span class="genre-icon">📖</span>
-                <h3 class="genre-title">Fiksi</h3>
+            <div class="genre-card" onclick="openGenreModal('seksbebas')">
+                <span class="genre-icon">🚫</span>
+                <h3 class="genre-title">Seks Bebas</h3>
                 <p class="genre-description">
-                    Karya sastra yang berisi cerita rekaan atau khayalan pengarang, bukan kejadian nyata.
+                    Seks di luar nikah tanpa tanggung jawab dan perlindungan.
                 </p>
                 <div class="genre-examples">
                     <strong>Contoh:</strong>
-                    Novel, cerpen, dongeng, fabel
-                </div>
+                    Kehamilan tidak diinginkan, PMS, trauma psikologis, putus sekolah
+                </div>                
             </div>
 
-            <div class="genre-card" onclick="openGenreModal('nonfiksi')">
-                <span class="genre-icon">📰</span>
-                <h3 class="genre-title">Non-Fiksi</h3>
+            <div class="genre-card" onclick="openGenreModal('HIV')">
+                <span class="genre-icon">🦠</span>
+                <h3 class="genre-title">HIV/AIDS</h3>
                 <p class="genre-description">
-                    Karya tulis yang berdasarkan fakta, data, dan kejadian nyata yang dapat diverifikasi.
+                    HIV melemahkan sistem imun dan tanpa penanganan berkembang menjadi AIDS dengan infeksi berat.
                 </p>
                 <div class="genre-examples">
                     <strong>Contoh:</strong>
-                    Biografi, esai, artikel, laporan
-                </div>
+                    Cara Penularan, Gejala, Pencegahan, Dampak, Fakta Penting
+                </div>                
             </div>
 
             <div class="genre-card" onclick="openGenreModal('puisi')">
@@ -72,15 +394,15 @@
                 </div>
             </div>
 
-            <div class="genre-card" onclick="openGenreModal('fantasi')">
-                <span class="genre-icon">🧙‍♂️</span>
-                <h3 class="genre-title">Fantasi</h3>
+            <div class="genre-card" onclick="openGenreModal('napza')">
+                <span class="genre-icon">⚠️</span>
+                <h3 class="genre-title">NAPZA</h3>
                 <p class="genre-description">
-                    Genre yang menampilkan elemen supernatural atau magis yang tidak ada di dunia nyata.
+                    Zat yang memengaruhi saraf pusat dan menyebabkan ketergantungan.
                 </p>
                 <div class="genre-examples">
                     <strong>Contoh:</strong>
-                    Harry Potter, Lord of the Rings
+                    Morfin, Heroin, Ekstasi, Alkohol, Nikotin
                 </div>
             </div>
 
@@ -120,6 +442,435 @@
         </div>
     </div>
 
-    <script src="./app.js"></script>
+    <script>
+        // Genre data for modal content
+        const genreData = {
+            seksbebas: {
+                title: "🚫 Seks Bebas",
+                description: "Seks bebas adalah perilaku hubungan seksual yang dilakukan di luar ikatan pernikahan yang sah, tanpa tanggung jawab, dan sering kali dilakukan dengan pasangan berbeda atau tanpa perlindungan.",
+                causes: [
+                    "Kurangnya pendidikan seksual yang benar",
+                    "Pengaruh media dan internet",
+                    "Tekanan teman sebaya",
+                    "Kurangnya pengawasan orang tua",
+                    "Pernikahan dini atau putus sekolah",
+                    "Cinta buta atau bujuk rayu pasangan"
+                ],
+                impacts: {
+                    health: [
+                        "Kehamilan yang tidak diinginkan (KTD)",
+                        "Penularan penyakit menular seksual (PMS): HIV/AIDS, sifilis, gonore",
+                        "Aborsi yang tidak aman (bisa menyebabkan infertilitas atau kematian)"
+                    ],
+                    psychological: [
+                        "Rasa bersalah dan trauma",
+                        "Depresi dan kecemasan",
+                        "Penurunan harga diri"
+                    ],
+                    social: [
+                        "Putus sekolah",
+                        "Pengucilan sosial",
+                        "Ketidakmampuan membina keluarga harmonis di masa depan"
+                    ]
+                },
+                facts: [
+                    "5–10% remaja pernah melakukan hubungan seksual pranikah (SDKI BKKBN 2022)",
+                    "Sekitar 70% kehamilan remaja tidak direncanakan",
+                    "Indonesia memiliki angka aborsi remaja tinggi, terutama akibat kehamilan yang tidak diinginkan",
+                    "Remaja usia 15–24 tahun merupakan kelompok tertinggi terinfeksi HIV baru di beberapa provinsi"
+                ],
+                prevention: [
+                    "Pendidikan seksualitas yang komprehensif",
+                    "Penguatan karakter dan remaja tangguh",
+                    "Aktif dalam kegiatan positif seperti PIK-R",
+                    "Berani berkata 'TIDAK' pada ajakan negatif",
+                    "Memiliki rencana masa depan dan tujuan hidup yang jelas"
+                ]
+            },
+            HIV : {
+    title: "🦠 HIV/AIDS",
+    description: "HIV adalah virus yang menyerang sistem kekebalan tubuh, khususnya sel CD4. AIDS adalah stadium akhir dari infeksi HIV, ditandai dengan turunnya kekebalan tubuh secara drastis dan munculnya penyakit infeksi oportunistik.",
+    definitions: {
+        hiv: "HIV (Human Immunodeficiency Virus) - Virus yang menyerang sistem kekebalan tubuh, khususnya sel CD4. Jika tidak ditangani, HIV melemahkan sistem imun sehingga tubuh rentan terhadap infeksi dan penyakit.",
+        aids: "AIDS (Acquired Immune Deficiency Syndrome) - Stadium akhir dari infeksi HIV, ditandai dengan turunnya kekebalan tubuh secara drastis dan munculnya penyakit infeksi oportunistik (misalnya TBC, pneumonia, kanker tertentu)."
+    },
+    transmission: {
+        note: "HIV tidak menular lewat udara, pelukan, makanan, atau air. Virus ini hanya dapat ditularkan melalui:",
+        methods: [
+            "Hubungan seksual tidak aman (tanpa kondom, terutama dengan banyak pasangan)",
+            "Penggunaan jarum suntik bersama (terutama pada pengguna NAPZA)",
+            "Transfusi darah yang tidak disaring",
+            "Penularan dari ibu ke anak saat kehamilan, persalinan, atau menyusui"
+        ]
+    },
+    symptoms: {
+        title: "Tahapan Infeksi HIV",
+        stages: [
+            {
+                stage: "Tahap awal (Acute Infection)",
+                symptoms: "demam, sakit tenggorokan, ruam"
+            },
+            {
+                stage: "Tahap laten klinis",
+                symptoms: "tanpa gejala, bisa berlangsung bertahun-tahun"
+            },
+            {
+                stage: "AIDS",
+                symptoms: "berat badan turun drastis, infeksi kronis, sariawan parah, diare berkepanjangan"
+            }
+        ]
+    },
+    prevention: {
+        title: "Pencegahan HIV/AIDS pada Remaja",
+        methods: {
+            sexuality_education: {
+                title: "A. Edukasi Seksualitas Sehat",
+                points: [
+                    "Menunda hubungan seksual sampai menikah",
+                    "Setia pada satu pasangan",
+                    "Gunakan kondom jika berisiko"
+                ]
+            },
+            avoid_drugs: {
+                title: "B. Jauhi NAPZA",
+                points: [
+                    "Hindari berbagi jarum suntik",
+                    "Edukasi teman sebaya tentang risiko penularan HIV"
+                ]
+            },
+            testing: {
+                title: "C. Tes dan Konseling Sukarela (VCT)",
+                description: "Remaja yang aktif seksual atau memiliki faktor risiko disarankan melakukan tes HIV secara berkala"
+            },
+            sterile_equipment: {
+                title: "D. Hindari Tindik & Tattoo tidak steril",
+                description: "Peralatan yang tidak disterilkan bisa menjadi jalur penularan HIV"
+            }
+        }
+    },
+    impacts: {
+        title: "Dampak HIV/AIDS bagi Remaja",
+        effects: [
+            "Stigma dan diskriminasi dari lingkungan",
+            "Masalah kesehatan jangka panjang",
+            "Gangguan pendidikan dan masa depan",
+            "Beban psikologis (depresi, isolasi sosial)"
+        ]
+    },
+    important_facts: {
+        title: "Fakta Penting tentang HIV/AIDS",
+        facts: [
+            "HIV tidak menyebar lewat bersalaman, pelukan, atau berbagi makanan",
+            "Orang dengan HIV bisa hidup sehat dan normal dengan pengobatan antiretroviral (ARV)",
+            "Semakin dini dideteksi, semakin besar peluang hidup sehat dan mencegah penularan"
+        ]
+    }
+},
+            puisi: {
+                title: "🎭 Genre Puisi",
+                description: "Puisi adalah karya sastra yang menggunakan bahasa yang padat, berima, dan kaya akan makna simbolik. Puisi mengekspresikan perasaan dan pemikiran dengan cara yang artistik.",
+                characteristics: [
+                    "Menggunakan bahasa yang padat dan simbolik",
+                    "Memiliki irama dan rima tertentu",
+                    "Mengandung majas dan kiasan",
+                    "Mengekspresikan perasaan dan emosi"
+                ],
+                types: [
+                    "Sonnet - puisi 14 baris dengan pola rima tertentu",
+                    "Balada - puisi naratif yang menceritakan kisah",
+                    "Pantun - puisi tradisional dengan pola a-b-a-b",
+                    "Syair - puisi naratif dengan pola a-a-a-a"
+                ]
+            },
+            drama: {
+                title: "🎪 Genre Drama",
+                description: "Drama adalah karya sastra yang ditulis dalam bentuk dialog dan action, dimaksudkan untuk dipentaskan di atas panggung atau layar.",
+                characteristics: [
+                    "Ditulis dalam bentuk dialog dan action",
+                    "Memiliki struktur babak dan adegan",
+                    "Menggunakan teknik teatrikal",
+                    "Dapat dipentaskan oleh aktor"
+                ],
+                types: [
+                    "Tragedi - berakhir sedih atau mengenaskan",
+                    "Komedi - menghibur dan berakhir bahagia",
+                    "Drama - campuran unsur tragis dan komis",
+                    "Musikal - drama yang dipadukan dengan musik"
+                ]
+            },
+            napza: {
+                title: "⚠️ NAPZA (Narkotika, Psikotropika, dan Zat Adiktif)",
+                description: "NAPZA adalah Narkotika, Psikotropika, dan Zat Adiktif lainnya. Istilah ini digunakan untuk menggambarkan zat-zat kimia yang mempengaruhi sistem saraf pusat dan dapat menyebabkan ketergantungan fisik maupun psikologis.",
+                characteristics: [
+                    "Mempengaruhi sistem saraf pusat",
+                    "Menyebabkan ketergantungan fisik dan psikologis",
+                    "Mengubah kesadaran dan perilaku",
+                    "Berbahaya bagi kesehatan dan kehidupan sosial"
+                ],
+                types: [
+                    "Narkotika - Morfin, Heroin, Ganja, Kokain, Opium",
+                    "Psikotropika - Ekstasi, Shabu-shabu, Diazepam, LSD", 
+                    "Zat Adiktif Lainnya - Nikotin, Alkohol, Lem aibon, Kafein berlebihan"
+                ]
+            },
+            misteri: {
+                title: "🔍 Genre Misteri",
+                description: "Misteri adalah genre yang berfokus pada pemecahan teka-teki, kejahatan, atau peristiwa yang tidak dapat dijelaskan dengan mudah.",
+                characteristics: [
+                    "Mengandung teka-teki atau kejahatan yang harus dipecahkan",
+                    "Memiliki suspense dan ketegangan",
+                    "Sering melibatkan detektif atau investigator",
+                    "Pembaca diajak untuk ikut memecahkan misteri"
+                ],
+                types: [
+                    "Detective Fiction - fokus pada detektif yang memecahkan kasus",
+                    "Cozy Mystery - misteri ringan tanpa kekerasan eksplisit",
+                    "Hard Boiled - misteri dengan suasana gelap dan keras",
+                    "Psychological Thriller - fokus pada aspek psikologis"
+                ]
+            }
+        };
+
+        // Modal functions
+        function openGenreModal(genreType) {
+            const genre = genreData[genreType];
+            const modalContent = document.getElementById('modalContent');
+            
+            if (genreType === 'napza') {
+                modalContent.innerHTML = `
+                    <h2 style="color: #dc3545; margin-bottom: 20px;">${genre.title}</h2>
+                    <p style="color: #666; line-height: 1.6; margin-bottom: 25px;">${genre.description}</p>
+                    
+                    <h3 style="color: #333; margin-bottom: 15px;">⚠️ Jenis-jenis NAPZA:</h3>
+                    <div style="margin-bottom: 25px;">
+                        <h4 style="color: #dc3545; margin-bottom: 10px;">A. Narkotika</h4>
+                        <p style="color: #666; margin-bottom: 10px; font-size: 0.9rem;">Zat atau obat yang berasal dari tanaman atau bukan tanaman yang dapat menyebabkan penurunan kesadaran dan ketergantungan.</p>
+                        <p style="color: #666; margin-bottom: 15px;"><strong>Contoh:</strong> Morfin, Heroin, Ganja, Kokain, Opium</p>
+                        
+                        <h4 style="color: #dc3545; margin-bottom: 10px;">B. Psikotropika</h4>
+                        <p style="color: #666; margin-bottom: 10px; font-size: 0.9rem;">Zat yang bekerja pada susunan saraf pusat dan menyebabkan perubahan aktivitas mental dan perilaku.</p>
+                        <p style="color: #666; margin-bottom: 15px;"><strong>Contoh:</strong> Ekstasi, Shabu-shabu, Diazepam, LSD</p>
+                        
+                        <h4 style="color: #dc3545; margin-bottom: 10px;">C. Zat Adiktif Lainnya</h4>
+                        <p style="color: #666; margin-bottom: 10px; font-size: 0.9rem;">Zat yang bukan narkotika/psikotropika tetapi dapat menyebabkan ketergantungan.</p>
+                        <p style="color: #666; margin-bottom: 25px;"><strong>Contoh:</strong> Nikotin, Alkohol, Lem aibon, Kafein berlebihan</p>
+                    </div>
+                    
+                    <h3 style="color: #333; margin-bottom: 15px;">💔 Dampak Penyalahgunaan:</h3>
+                    <div style="margin-bottom: 25px;">
+                        <h4 style="color: #dc3545; margin-bottom: 10px;">Dampak Fisik:</h4>
+                        <ul style="color: #666; line-height: 1.4; margin-bottom: 15px; padding-left: 20px; font-size: 0.9rem;">
+                            <li>Gangguan sistem saraf</li>
+                            <li>Penurunan fungsi organ (hati, ginjal, paru)</li>
+                            <li>Penurunan berat badan drastis</li>
+                            <li>Risiko infeksi HIV/AIDS</li>
+                        </ul>
+                        
+                        <h4 style="color: #dc3545; margin-bottom: 10px;">Dampak Psikologis:</h4>
+                        <ul style="color: #666; line-height: 1.4; margin-bottom: 15px; padding-left: 20px; font-size: 0.9rem;">
+                            <li>Halusinasi dan delusi</li>
+                            <li>Depresi dan kecemasan</li>
+                            <li>Agresivitas</li>
+                            <li>Gangguan mental jangka panjang</li>
+                        </ul>
+                        
+                        <h4 style="color: #dc3545; margin-bottom: 10px;">Dampak Sosial:</h4>
+                        <ul style="color: #666; line-height: 1.4; margin-bottom: 25px; padding-left: 20px; font-size: 0.9rem;">
+                            <li>Putus sekolah</li>
+                            <li>Pelanggaran hukum (kriminalitas)</li>
+                            <li>Menurunnya produktivitas</li>
+                            <li>Mengganggu keharmonisan keluarga</li>
+                        </ul>
+                    </div>
+                    
+                    <h3 style="color: #333; margin-bottom: 15px;">🛡️ Pencegahan:</h3>
+                    <ul style="color: #666; line-height: 1.4; padding-left: 20px; font-size: 0.9rem;">
+                        <li><strong>Pencegahan Primer:</strong> Edukasi dan pembentukan karakter sejak dini</li>
+                        <li><strong>Pencegahan Sekunder:</strong> Identifikasi dini dan konseling</li>
+                        <li><strong>Pencegahan Tersier:</strong> Rehabilitasi dan reintegrasi sosial</li>
+                    </ul>
+                `;
+            }
+            else if (genreType === 'seksbebas') {
+    modalContent.innerHTML = `
+        <h2 style="color: #dc3545; margin-bottom: 20px;">${genre.title}</h2>
+        <p style="color: #666; line-height: 1.6; margin-bottom: 25px;">${genre.description}</p>
+        
+        <h3 style="color: #333; margin-bottom: 15px;">🧠 Penyebab:</h3>
+        <ul style="color: #666; line-height: 1.6; margin-bottom: 25px; padding-left: 20px;">
+            ${genre.causes.map(item => `<li>${item}</li>`).join('')}
+        </ul>
+
+        <h3 style="color: #333; margin-bottom: 15px;">💥 Dampak:</h3>
+        <div style="margin-bottom: 25px;">
+            <h4 style="color: #dc3545; margin-bottom: 10px;">Dampak Kesehatan:</h4>
+            <ul style="color: #666; line-height: 1.6; margin-bottom: 15px; padding-left: 20px;">
+                ${genre.impacts.health.map(item => `<li>${item}</li>`).join('')}
+            </ul>
+
+            <h4 style="color: #dc3545; margin-bottom: 10px;">Dampak Psikologis:</h4>
+            <ul style="color: #666; line-height: 1.6; margin-bottom: 15px; padding-left: 20px;">
+                ${genre.impacts.psychological.map(item => `<li>${item}</li>`).join('')}
+            </ul>
+
+            <h4 style="color: #dc3545; margin-bottom: 10px;">Dampak Sosial:</h4>
+            <ul style="color: #666; line-height: 1.6; margin-bottom: 25px; padding-left: 20px;">
+                ${genre.impacts.social.map(item => `<li>${item}</li>`).join('')}
+            </ul>
+        </div>
+
+        <h3 style="color: #333; margin-bottom: 15px;">📊 Fakta:</h3>
+        <ul style="color: #666; line-height: 1.6; margin-bottom: 25px; padding-left: 20px;">
+            ${genre.facts.map(item => `<li>${item}</li>`).join('')}
+        </ul>
+
+        <h3 style="color: #333; margin-bottom: 15px;">🛡️ Pencegahan:</h3>
+        <ul style="color: #666; line-height: 1.6; padding-left: 20px;">
+            ${genre.prevention.map(item => `<li>${item}</li>`).join('')}
+        </ul>
+    `;
+    }
+    else if (genreType === 'HIV') {
+    modalContent.innerHTML = `
+        <h2 style="color: #dc3545; margin-bottom: 20px;">${genre.title}</h2>
+        <p style="color: #666; line-height: 1.6; margin-bottom: 25px;">${genre.description}</p>
+        
+        <h3 style="color: #333; margin-bottom: 15px;">📖 Definisi:</h3>
+        <ul style="color: #666; line-height: 1.6; margin-bottom: 25px; padding-left: 20px;">
+            <li><strong>HIV:</strong> ${genre.definitions.hiv}</li>
+            <li><strong>AIDS:</strong> ${genre.definitions.aids}</li>
+        </ul>
+        
+        <h3 style="color: #333; margin-bottom: 15px;">🦠 Cara Penularan:</h3>
+        <p style="color: #666; line-height: 1.6; margin-bottom: 15px;">${genre.transmission.note}</p>
+        <ul style="color: #666; line-height: 1.6; margin-bottom: 25px; padding-left: 20px;">
+            ${genre.transmission.methods.map(method => `<li>${method}</li>`).join('')}
+        </ul>
+        
+        <h3 style="color: #333; margin-bottom: 15px;">⚠️ ${genre.symptoms.title}:</h3>
+        <ul style="color: #666; line-height: 1.6; margin-bottom: 25px; padding-left: 20px;">
+            ${genre.symptoms.stages.map(stage => `
+                <li><strong>${stage.stage}:</strong> ${stage.symptoms}</li>
+            `).join('')}
+        </ul>
+        
+        <h3 style="color: #333; margin-bottom: 15px;">🛡️ Pencegahan HIV/AIDS pada Remaja:</h3>
+        <div style="color: #666; line-height: 1.6; margin-bottom: 25px;">
+            <h4 style="color: #dc3545; margin-bottom: 10px;">${genre.prevention.methods.sexuality_education.title}</h4>
+            <ul style="padding-left: 20px;">
+                ${genre.prevention.methods.sexuality_education.points.map(point => `<li>${point}</li>`).join('')}
+            </ul>
+            <h4 style="color: #dc3545; margin-bottom: 10px;">${genre.prevention.methods.avoid_drugs.title}</h4>
+            <ul style="padding-left: 20px;">
+                ${genre.prevention.methods.avoid_drugs.points.map(point => `<li>${point}</li>`).join('')}
+            </ul>
+            <h4 style="color: #dc3545; margin-bottom: 10px;">${genre.prevention.methods.testing.title}</h4>
+            <p>${genre.prevention.methods.testing.description}</p>
+            <h4 style="color: #dc3545; margin-bottom: 10px;">${genre.prevention.methods.sterile_equipment.title}</h4>
+            <p>${genre.prevention.methods.sterile_equipment.description}</p>
+        </div>
+
+        <h3 style="color: #333; margin-bottom: 15px;">💥 Dampak HIV/AIDS bagi Remaja:</h3>
+        <ul style="color: #666; line-height: 1.6; margin-bottom: 25px; padding-left: 20px;">
+            ${genre.impacts.effects.map(effect => `<li>${effect}</li>`).join('')}
+        </ul>
+
+        <h3 style="color: #333; margin-bottom: 15px;">📊 Fakta Penting tentang HIV/AIDS:</h3>
+        <ul style="color: #666; line-height: 1.6; padding-left: 20px;">
+            ${genre.important_facts.facts.map(fact => `<li>${fact}</li>`).join('')}
+        </ul>
+    `;
+} else {
+                modalContent.innerHTML = `
+                    <h2 style="color: #667eea; margin-bottom: 20px;">${genre.title}</h2>
+                    <p style="color: #666; line-height: 1.6; margin-bottom: 25px;">${genre.description}</p>
+                    
+                    <h3 style="color: #333; margin-bottom: 15px;">🔍 Karakteristik:</h3>
+                    <ul style="color: #666; line-height: 1.6; margin-bottom: 25px; padding-left: 20px;">
+                        ${genre.characteristics.map(char => `<li>${char}</li>`).join('')}
+                    </ul>
+                    
+                    <h3 style="color: #333; margin-bottom: 15px;">📝 Jenis-jenis:</h3>
+                    <ul style="color: #666; line-height: 1.6; padding-left: 20px;">
+                        ${genre.types.map(type => `<li>${type}</li>`).join('')}
+                    </ul>
+                `;
+            }
+            
+            document.getElementById('genreModal').style.display = 'block';
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal() {
+            document.getElementById('genreModal').style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+
+        // Quiz functionality
+        function startQuiz() {
+            alert('🎉 Fitur kuis akan segera hadir! Tetap semangat belajar ya!');
+        }
+
+        function showRandomFact() {
+            const facts = [
+                "💡 Tahukah kamu? Novel pertama di dunia adalah 'The Tale of Genji' yang ditulis oleh Murasaki Shikibu pada abad ke-11!",
+                "📚 Genre fantasi modern dimulai dari karya J.R.R. Tolkien dengan 'The Hobbit' dan 'The Lord of the Rings'.",
+                "🎭 Drama tertua yang masih dimainkan hingga kini adalah karya-karya dari Yunani kuno seperti 'Oedipus Rex'.",
+                "🔍 Sherlock Holmes adalah karakter detektif fiksi paling terkenal yang dibuat oleh Arthur Conan Doyle.",
+                "📖 Puisi haiku berasal dari Jepang dan terdiri dari 3 baris dengan pola 5-7-5 suku kata."
+            ];
+            
+            const randomFact = facts[Math.floor(Math.random() * facts.length)];
+            alert(randomFact);
+        }
+
+        // Close modal when clicking outside
+        window.onclick = function(event) {
+            const modal = document.getElementById('genreModal');
+            if (event.target === modal) {
+                closeModal();
+            }
+        }
+
+        // Add smooth scrolling
+        window.addEventListener('load', function() {
+            document.body.style.opacity = '0';
+            document.body.style.transition = 'opacity 0.5s ease-in-out';
+            
+            setTimeout(() => {
+                document.body.style.opacity = '1';
+            }, 100);
+        });
+
+        // Add ripple effect to cards
+        document.querySelectorAll('.genre-card').forEach(card => {
+            card.addEventListener('click', function(e) {
+                const ripple = document.createElement('div');
+                const rect = this.getBoundingClientRect();
+                const size = Math.max(rect.width, rect.height);
+                const x = e.clientX - rect.left - size / 2;
+                const y = e.clientY - rect.top - size / 2;
+                
+                ripple.style.cssText = `
+                    position: absolute;
+                    width: ${size}px;
+                    height: ${size}px;
+                    left: ${x}px;
+                    top: ${y}px;
+                    background: rgba(102, 126, 234, 0.3);
+                    border-radius: 50%;
+                    transform: scale(0);
+                    animation: ripple 0.6s ease-out;
+                    pointer-events: none;
+                `;
+                
+                this.appendChild(ripple);
+                
+                setTimeout(() => {
+                    ripple.remove();
+                }, 600);
+            });
+        });
+    </script>
 </body>
 </html>

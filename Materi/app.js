@@ -1,4 +1,3 @@
-// Genre data for modal content
 const genreData = {
     fiksi: {
         title: "📖 Genre Fiksi",
@@ -98,7 +97,6 @@ const genreData = {
     }
 };
 
-// Modal functions
 function openGenreModal(genreType) {
     const genre = genreData[genreType];
     const modalContent = document.getElementById('modalContent');
@@ -127,7 +125,6 @@ function closeModal() {
     document.body.style.overflow = 'auto';
 }
 
-// Quiz functionality
 function startQuiz() {
     alert('🎉 Fitur kuis akan segera hadir! Tetap semangat belajar ya!');
 }
@@ -145,7 +142,6 @@ function showRandomFact() {
     alert(randomFact);
 }
 
-// Close modal when clicking outside
 window.onclick = function(event) {
     const modal = document.getElementById('genreModal');
     if (event.target === modal) {
@@ -153,7 +149,6 @@ window.onclick = function(event) {
     }
 }
 
-// Add smooth scrolling
 window.addEventListener('load', function() {
     document.body.style.opacity = '0';
     document.body.style.transition = 'opacity 0.5s ease-in-out';
@@ -163,7 +158,6 @@ window.addEventListener('load', function() {
     }, 100);
 });
 
-// Add ripple effect to cards
 document.querySelectorAll('.genre-card').forEach(card => {
     card.addEventListener('click', function(e) {
         const ripple = document.createElement('div');
